@@ -19,4 +19,15 @@ router.post("/teams", (req, res, next) => {
     .catch(next);
 });
 
+router.get("/teams/:teamId", (req, res, next) => {
+  Team.findByPk(req.params.teamId)
+    .then(team => {
+      if (!team) {
+        res.status(404).end();
+      } else {
+        res.json(team);
+      }
+    })
+    .catch(next);
+});
 module.exports = router;
