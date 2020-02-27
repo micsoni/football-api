@@ -1,8 +1,10 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 4000;
 const teamRouter = require("./Team/router");
 
+app.use(bodyParser.json());
 app.use(teamRouter);
 app.get("/", (request, response) => response.send("Welcome to the homepage!"));
 
