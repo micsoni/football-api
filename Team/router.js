@@ -30,4 +30,17 @@ router.get("/teams/:teamId", (req, res, next) => {
     })
     .catch(next);
 });
+
+router.put("/teams/:teamId", (req, res, next) => {
+  Team.findByPk(req.params.teamId)
+    .then(team => {
+      if (team) {
+        team.update(req.body).then(team => res.json(team));
+      } else {
+        res.status(404).end();
+      }
+    })
+    .catch(next);
+});
+
 module.exports = router;
